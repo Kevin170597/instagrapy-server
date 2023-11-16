@@ -1,10 +1,10 @@
-#blinker==1.7.0
+blinker==1.7.0
 certifi==2023.7.22
 charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 decorator==4.4.2
-#dnspython==2.4.2
+dnspython==2.4.2
 Flask==3.0.0
 idna==3.4
 imageio==2.32.0
