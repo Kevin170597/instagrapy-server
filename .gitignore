@@ -1,0 +1,147 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python environment
+venv/
+env/
+ENV/
+.venv/
+env.bak/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Logs and databases
+*.log
+*.sqlite
+db.sqlite3
+
+# Local configuration
+instance/
+.config/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Editor-specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.user
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.user
+*.vscode
+*.vscode-test
+
+# Dependency directories
+lib/
+lib64/
+node_modules/
+
+# Distribution
+dist/
+build/
+
+# Python egg and wheel
+*.egg-info/
+*.egg
+*.egg-info
+*.dist-info
+*.dist
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Virtual environment
+venv/
+ENV/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# pipenv
+Pipfile
+Pipfile.lock
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+.sage-sws/
+.pycache/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+
+# Pyre type checker
+.pyre/
+
+# Profile data
+.prof
+.profraw
+
+# PyInstaller
+dist/
+build/
+*.exe
+*.spec
+
+# PyUp
+pyup.yml
+
+# pipenv
+Pipfile.lock
+pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# ccache
+__ccache__/
+
+# pyenv
+.python-version
+
+# dotenv
+.env
+
+# virtualenv
+venv/
+ENV/
+
+# Visual Studio Code directories
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
