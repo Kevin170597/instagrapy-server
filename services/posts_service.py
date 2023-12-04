@@ -4,8 +4,8 @@ from bson import ObjectId
 def get_all_posts(type, username):
     db = current_app.mongo
     ig_posts = db['ig-posts']
-    data = ig_posts.find({ 'type': type, 'username': username })
-    data_list = [{**item, '_id': str(item['_id'])} for item in data]
+    data = ig_posts.find({ 'type': type, 'username': username, 'posted': { '$ne': True } })
+    data_list = [{**item, '_id': str(item['_id'])} for item in data][::-1]
     return data_list
 
 def get_post(type, username, day, hour):
