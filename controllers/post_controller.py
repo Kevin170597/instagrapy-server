@@ -35,6 +35,7 @@ def add(type):
     try:
         body = request.get_json()
         body['type'] = type
+        body['posted'] = False
         post = save_post(body)
         return jsonify(post), 200
     except Exception as e:

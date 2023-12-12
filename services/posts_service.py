@@ -1,5 +1,6 @@
 from flask import current_app
 from bson import ObjectId
+from models.post_model import Post
 
 def get_all_posts(type, username):
     db = current_app.mongo
@@ -25,7 +26,15 @@ def get_post_by_id(type, username, id):
 def save_post(post):
     db = current_app.mongo
     ig_posts = db['ig-posts']
-    data = ig_posts.insert_one(post)
+    post_data = Post(caption=post['caption'], 
+                    day=post['day'], 
+                    hour=post['hour'], 
+                    posted=post['posted'], 
+                    type=post['type'], 
+                    username=post['username'], 
+                    url=post.get('url'), 
+                    urls=post.get('urls'))
+    data = ig_posts.insert_one(post_data.to_dict())
     return { '_id': str(data.inserted_id)}
 
 def update_post(type, post, id):
