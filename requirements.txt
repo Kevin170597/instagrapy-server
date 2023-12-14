@@ -5,3 +5,4 @@ Pillow
 pymongo
 python-dotenv
 requests
+Flask-CORS
