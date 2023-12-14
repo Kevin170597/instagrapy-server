@@ -30,11 +30,11 @@ def post_by_id(type: str, username: str, id: str):
     except Exception as e:
         return jsonify({ 'error': str(e) })
     
-@post_bp.route('/<string:type>/add', methods=['POST'])
-def add(type: str):
+@post_bp.route('/<string:type>/<string:username>/add', methods=['POST'])
+def add(type: str, username: str):
     try:
         body = request.get_json()
-        post = save_post(type, body)
+        post = save_post(type, username, body)
         return jsonify(post), 200
     except Exception as e:
         return jsonify({ 'error': str(e) })
