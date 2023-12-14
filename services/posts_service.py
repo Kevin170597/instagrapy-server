@@ -31,19 +31,19 @@ def get_post_by_id(type: str, username: str, id: str):
     data['_id'] = str(data['_id'])
     return data
 
-def save_post(type: str, post):
+def save_post(type: str, username: str, post):
     validate_type(type)
     db = current_app.mongo
     ig_posts = db['ig-posts']
     post_data = Post(
-        caption=post['caption'], 
         day=post['day'], 
         hour=post['hour'], 
         posted=False, 
         type=type, 
-        username=post['username'], 
+        username=username, 
         url=post.get('url'), 
-        urls=post.get('urls')
+        urls=post.get('urls'),
+        caption=post.get('caption')
     )
     data = ig_posts.insert_one(post_data.to_dict())
     return { '_id': str(data.inserted_id)}
