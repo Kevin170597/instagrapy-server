@@ -1,7 +1,13 @@
 from flask import Blueprint, jsonify, request
-from services.instagram_service import ig_login, post_album, post_photo, post_reel, post_story
+from services.instagram_service import ig_login, post_album, post_photo, post_reel, post_story, decode
 
 instagram_bp = Blueprint('instagram', __name__)
+
+@instagram_bp.route('/decoded', methods=['GET'])
+def d():
+    dec = decode()
+    print(dec)
+    return jsonify({ 'result': dec })
 
 @instagram_bp.route('/instagram/login', methods=['POST'])
 def log_in():
