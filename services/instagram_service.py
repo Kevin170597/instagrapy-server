@@ -3,13 +3,8 @@ import requests
 from datetime import datetime
 from instagrapi import Client
 import jwt
-from config.config import BULLWORTHPICS_PASSWORD
+from config.config import BULLWORTHPICS_PASSWORD, JWT_SECRET_ENCODER, JWT_ALGORITHM
 from services.posts_service import get_post, update_post
-
-def decode():
-    token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJ1bGx3b3J0aC5waWNzIn0.-2W0FSAuhiciT5rrb1gDm9w8nuBdWQKmF6_KGEVnSJM'
-    decoded = jwt.decode(token, "SdEZa3wx4i", algorithms='HS256')
-    return decoded
 
 def ig_login(body):
     username = ''
@@ -22,7 +17,7 @@ def ig_login(body):
     user_info = []
     if user == True:
         user_info = cl.user_info_by_username(username).dict()
-        token = jwt.encode({ 'username': username }, "SdEZa3wx4i", algorithm='HS256')
+        token = jwt.encode({ 'username': username }, JWT_SECRET_ENCODER, algorithm=JWT_ALGORITHM)
         user_info['token'] = token
     else:
         raise ValueError("Invalid User")
