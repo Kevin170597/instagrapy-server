@@ -13,14 +13,18 @@ def ig_login(body):
         username = body['username']
         password = body['password']
     cl = Client()
-    user = cl.login(username, password)
+    try: 
+        user = cl.login(username, password)
+    except Exception as e:
+        print(20, e)
+        user = False
     user_info = []
     if user == True:
         user_info = cl.user_info_by_username(username).dict()
         token = jwt.encode({ 'username': username }, JWT_SECRET_ENCODER, algorithm=JWT_ALGORITHM)
         user_info['token'] = token
     else:
-        raise ValueError("Invalid User")
+        raise ValueError("Invalid username or password")
     return user_info
 
 def post_photo(username, hour):
