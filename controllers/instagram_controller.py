@@ -3,6 +3,7 @@ from services.instagram_service import ig_login, post_album, post_photo, post_re
 
 instagram_bp = Blueprint('instagram', __name__)
 
+@instagram_bp.route('/instagram/login', methods=['POST'])
 def log_in():
     try:
         body = request.get_json()
