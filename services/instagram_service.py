@@ -59,10 +59,10 @@ def post_album(username, hour):
     files_paths = []
 
     for url in data['urls']:
-        file = requests.get(url)
+        album = requests.get(url)
         filename = url.split('/')[-1]
         with open(f'./downloads/{filename}', 'wb') as file:
-            file.write(file.content)
+            file.write(album.content)
         files_paths.append(f'./downloads/{filename}')
 
     cl = Client()
