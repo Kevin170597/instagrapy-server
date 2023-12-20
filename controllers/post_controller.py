@@ -1,24 +1,33 @@
 from flask import Blueprint, jsonify, request
 from services.posts_service import get_all_posts, get_post, get_post_by_id, save_post, update_post, delete_post
 from datetime import datetime
+from middleware.auth_token import auth_middleware
 
 post_bp = Blueprint('main', __name__)
 
 @post_bp.route('/<string:type>/<string:username>/all', methods=['GET'])
-def all(type: str, username: str):
+@auth_middleware
+def all(auth_result: str, type: str, username: str):
     try:
-        posts = get_all_posts(type, username)
-        return jsonify(posts), 200
+        if auth_result == username:
+            posts = get_all_posts(type, auth_result)
+            return jsonify(posts), 200
+        else: 
+            raise ValueError('Token is invalid.')
     except Exception as e:
         return jsonify({ 'error': str(e) })
 
 @post_bp.route('/<string:type>/<string:username>', methods=['GET'])
-def post(type: str, username: str):
+@auth_middleware
+def post(auth_result:str, type: str, username: str):
     try:
-        day = datetime.now().strftime('%d/%m/%Y')
-        hour = request.args.get('hour')
-        post = get_post(type, username, day, hour)
-        return jsonify(post), 200
+        if auth_result == username:
+            day = datetime.now().strftime('%d/%m/%Y')
+            hour = request.args.get('hour')
+            post = get_post(type, username, day, hour)
+            return jsonify(post), 200
+        else: 
+            raise ValueError('Token is invalid.')
     except Exception as e:
         return jsonify({ 'error': str(e) })
 
