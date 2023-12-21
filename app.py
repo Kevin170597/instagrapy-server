@@ -7,7 +7,7 @@ from config.config import MONGODB_URI
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 app.config['MONGO_URI'] = MONGODB_URI
 mongo = MongoClient(app.config['MONGO_URI'])
