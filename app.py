@@ -14,7 +14,11 @@ mongo = MongoClient(app.config['MONGO_URI'])
 app.mongo = mongo['igcron']
 
 app.register_blueprint(post_bp)
-app.register_blueprint(instagram_bp)
+app.register_blueprint(instagram_bp)\
+
+@app.route('/', methods=['GET'])
+def home():
+    return "Instagrapy-Server"
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
