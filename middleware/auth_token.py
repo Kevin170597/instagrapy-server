@@ -15,12 +15,12 @@ def auth_middleware(f):
         
         try:
             data = jwt.decode(token, JWT_SECRET_ENCODER, algorithms=JWT_ALGORITHM)
-            username = data['username']
+            userid = data['userid']
         except:
             return jsonify({
                 'message': 'Token is invalid.'
             }), 401
         
-        return f(username, *args, **kwargs)
+        return f(userid, *args, **kwargs)
     
     return decorated

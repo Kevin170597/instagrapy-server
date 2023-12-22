@@ -8,6 +8,7 @@ class Post:
             posted: bool, 
             type: str, 
             username: str, 
+            userid: str,
             url: str = None, 
             urls: list = None,
             caption: str = None
@@ -17,6 +18,7 @@ class Post:
         self.posted = posted
         self.type = type
         self.username = username
+        self.userid = userid
         self.url = url
         self.urls = urls
         self.caption = caption
@@ -28,6 +30,7 @@ class Post:
             'posted': self.posted,
             'type': self.type,
             'username': self.username,
+            'userid': self.userid,
             'url': self.url,
             'urls': self.urls,
             'caption': self.caption

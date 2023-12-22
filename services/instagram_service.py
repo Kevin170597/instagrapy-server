@@ -16,12 +16,11 @@ def ig_login(body):
     try: 
         user = cl.login(username, password)
     except Exception as e:
-        print(20, e)
         user = False
     user_info = []
     if user == True:
         user_info = cl.user_info_by_username(username).dict()
-        token = jwt.encode({ 'username': username }, JWT_SECRET_ENCODER, algorithm=JWT_ALGORITHM)
+        token = jwt.encode({ 'userid': user_info['pk'] }, JWT_SECRET_ENCODER, algorithm=JWT_ALGORITHM)
         user_info['token'] = token
     else:
         raise ValueError("Invalid username or password")
