@@ -53,7 +53,7 @@ def update_post(type: str, post, id: str):
     db = current_app.mongo
     ig_posts = db['ig-posts']
     data = ig_posts.update_one({ '_id': ObjectId(id), 'type': type }, { '$set': post })
-    return { 'matched_count': data.matched_count, 'modified_count': data.modified_count }
+    return { '_id': id }
 
 def delete_post(type: str, id: str):
     validate_type(type)

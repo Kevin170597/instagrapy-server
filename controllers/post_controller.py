@@ -19,7 +19,7 @@ def all(auth_result: str, type: str, username: str):
 
 @post_bp.route('/<string:type>/<string:username>', methods=['GET'])
 @auth_middleware
-def post(auth_result:str, type: str, username: str):
+def post(auth_result: str, type: str, username: str):
     try:
         if auth_result == username:
             day = datetime.now().strftime('%d/%m/%Y')
@@ -32,28 +32,40 @@ def post(auth_result:str, type: str, username: str):
         return jsonify({ 'error': str(e) })
 
 @post_bp.route('/<string:type>/<string:username>/<string:id>', methods=['GET'])
-def post_by_id(type: str, username: str, id: str):
+@auth_middleware
+def post_by_id(auth_result: str, type: str, username: str, id: str):
     try:
-        post = get_post_by_id(type, username, id)
-        return jsonify(post), 200
+        if auth_result == username:
+            post = get_post_by_id(type, username, id)
+            return jsonify(post), 200
+        else: 
+            raise ValueError('Token is invalid.')
     except Exception as e:
         return jsonify({ 'error': str(e) })
     
 @post_bp.route('/<string:type>/<string:username>/add', methods=['POST'])
-def add(type: str, username: str):
+@auth_middleware
+def add(auth_result: str, type: str, username: str):
     try:
-        body = request.get_json()
-        post = save_post(type, username, body)
-        return jsonify(post), 200
+        if auth_result == username:
+            body = request.get_json()
+            post = save_post(type, username, body)
+            return jsonify(post), 200
+        else: 
+            raise ValueError('Token is invalid.')
     except Exception as e:
         return jsonify({ 'error': str(e) })
     
 @post_bp.route('/<string:type>/update/<string:id>', methods=['PATCH'])
-def update(type: str, id: str):
+@auth_middleware
+def update(auth_result: str, type: str, id: str):
     try:
-        body = request.get_json()
-        updated = update_post(type, body, id)
-        return jsonify(updated), 200
+        if auth_result:
+            body = request.get_json()
+            updated = update_post(type, body, id)
+            return jsonify(updated), 200
+        else: 
+            raise ValueError('Token is invalid.')
     except Exception as e:
         return jsonify({ 'error': str(e) })
     
