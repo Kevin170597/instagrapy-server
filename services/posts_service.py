@@ -15,7 +15,7 @@ def get_all_posts(type: str, username: str, userid: str):
     data_list = [{**item, '_id': str(item['_id'])} for item in data][::-1]
     return data_list
 
-def get_post(type: str, username: str, day: str, hour: str, userid):
+def get_post(type: str, username: str, day: str, hour: str, userid: str):
     validate_type(type)
     db = current_app.mongo
     ig_posts = db['ig-posts']
@@ -31,7 +31,7 @@ def get_post_by_id(type: str, username: str, id: str, userid: str):
     data['_id'] = str(data['_id'])
     return data
 
-def save_post(type: str, username: str, post, userid):
+def save_post(type: str, username: str, post, userid: str):
     validate_type(type)
     db = current_app.mongo
     ig_posts = db['ig-posts']

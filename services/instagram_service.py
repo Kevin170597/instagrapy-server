@@ -26,11 +26,11 @@ def ig_login(body):
         raise ValueError("Invalid username or password")
     return user_info
 
-def post_photo(username, hour):
+def post_photo(username: str, hour: str, userid: str):
     password = BULLWORTHPICS_PASSWORD
     day = datetime.now().strftime('%d/%m/%Y')
 
-    data = get_post('photo', username, day, hour)
+    data = get_post('photo', username, day, hour, userid)
     data['_id'] = str(data['_id'])
     
     photo = requests.get(data['url'])
@@ -48,11 +48,11 @@ def post_photo(username, hour):
 
     return { 'username': username, 'day': day, 'hour': hour }
 
-def post_album(username, hour):
+def post_album(username: str, hour: str, userid: str):
     password = BULLWORTHPICS_PASSWORD
     day = datetime.now().strftime('%d/%m/%Y')
 
-    data = get_post('album', username, day, hour)
+    data = get_post('album', username, day, hour, userid)
     data['_id'] = str(data['_id'])
 
     files_paths = []
@@ -75,11 +75,11 @@ def post_album(username, hour):
 
     return { 'username': username, 'day': day, 'hour': hour }
 
-def post_reel(username, hour):
+def post_reel(username, hour, userid: str):
     password = BULLWORTHPICS_PASSWORD
     day = datetime.now().strftime('%d/%m/%Y')
 
-    data = get_post('reel', username, day, hour)
+    data = get_post('reel', username, day, hour, userid)
     data['_id'] = str(data['_id'])
 
     thumbnail = requests.get(data['thumbnail'])
@@ -105,11 +105,11 @@ def post_reel(username, hour):
 
     return { 'username': username, 'day': day, 'hour': hour }
 
-def post_story(username, hour):
+def post_story(username, hour, userid: str):
     password = BULLWORTHPICS_PASSWORD
     day = datetime.now().strftime('%d/%m/%Y')
 
-    data = get_post('story', username, day, hour)
+    data = get_post('story', username, day, hour, userid)
     data['_id'] = str(data['_id'])
 
     story = requests.get(data['url'])
