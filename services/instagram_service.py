@@ -44,7 +44,7 @@ def post_photo(username: str, hour: str, userid: str):
     
     os.remove(f'./downloads/{filename}')
 
-    update_post('photo', { 'posted': True }, data['_id'])
+    update_post('photo', { 'posted': True }, data['_id'], userid)
 
     return { 'username': username, 'day': day, 'hour': hour }
 
@@ -71,7 +71,7 @@ def post_album(username: str, hour: str, userid: str):
     for path in files_paths:
         os.remove(path)
 
-    update_post('album', { 'posted': True }, data['_id'])
+    update_post('album', { 'posted': True }, data['_id'], userid)
 
     return { 'username': username, 'day': day, 'hour': hour }
 
@@ -101,7 +101,7 @@ def post_reel(username, hour, userid: str):
     os.remove(f'./downloads/{thumbnail_filename}')
     os.remove(f'./downloads/{reel_filename}')
 
-    update_post('reel', { 'posted': True }, data['_id'])
+    update_post('reel', { 'posted': True }, data['_id'], userid)
 
     return { 'username': username, 'day': day, 'hour': hour }
 
@@ -123,7 +123,7 @@ def post_story(username, hour, userid: str):
 
     os.remove(f'./downloads/{filename}')
     
-    update_post('story', { 'posted': True }, data['_id'])
+    update_post('story', { 'posted': True }, data['_id'], userid)
 
     return { 'username': username, 'day': day, 'hour': hour }
 
